@@ -94,15 +94,17 @@ let profitlossTotal = 0;
 
 for (i = 0; i < finances.length; i++) {
   [month, profitloss] = finances[i];
-  console.log(month, profitloss);
+  profitlossTotal += profitloss[i];
+  // console.log(profitlossTotal);
+  // console.log(month, profitloss);
   //   console.log(typeof profitloss);
-  //   profitlossTotal = profitlossTotal + profitloss[i];
-  //   console.log(profitlossTotal);
 }
 
 console.log(totalMonths);
-console.log(month, profitloss);
+console.log(profitlossTotal);
+console.log(typeof profitlossTotal);
+console.log(typeof profitloss);
 
-// Calculate net profit and loss.  Need to deconstruct array.  Loop over profitloss part of array and add numbers together.
+// Calculate net profit and loss.  Need to deconstruct array.  Loop over profitloss part of array and add numbers together.  Total showing as NaN.  Need to research whether the negative numbers are affecting the calculation and maybe reformat the profitloss variable.
 
 // let netProfitLoss = Maths.sum(finances);
