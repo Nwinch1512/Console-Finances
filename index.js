@@ -106,7 +106,7 @@ for (i = 0; i < finances.length; i++) {
 
 // Thinking about calculating month on month change
 for (i = 1; i < finances.length; i++) {
-  monthChange[i] = finances[i[profitloss]] - finances[i[profitloss] - 1];
+  monthChange.push(profitlossArray[i] - profitlossArray[i - 1]);
 }
 
 console.log(totalMonths);
