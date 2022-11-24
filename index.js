@@ -91,10 +91,13 @@ let totalMonths = finances.length;
 
 let month, profitloss;
 let profitlossTotal = 0;
+let profitlossArray = [];
 
 for (i = 0; i < finances.length; i++) {
   [month, profitloss] = finances[i];
   profitlossTotal += profitloss;
+  profitlossArray.push(profitloss);
+
   // console.log(profitlossTotal);
   console.log(month, profitloss);
   //   console.log(typeof profitloss);
@@ -102,6 +105,7 @@ for (i = 0; i < finances.length; i++) {
 
 console.log(totalMonths);
 console.log(profitlossTotal);
+console.log(profitlossArray);
 console.log(typeof profitlossTotal);
 console.log(typeof profitloss);
 
@@ -127,6 +131,7 @@ console.log(typeof profitloss);
 // Average  Change: $-2315.12
 // Greatest Increase in Profits: Feb-2012 ($1926159)
 // Greatest Decrease in Profits: Sep-2013 ($-2196167)
-// ```
+// ```Set up a table in HTML
 
 // Your final code should print the analysis to the console.
+// Use console.log to do this.
