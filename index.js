@@ -95,7 +95,7 @@ let profitlossArray = [];
 let monthChange = [];
 
 for (i = 0; i < finances.length; i++) {
-  [month, profitloss] = finances[i];
+  ([month, profitloss] = finances[i]), 0;
   profitlossTotal += profitloss;
   profitlossArray.push(profitloss);
 
@@ -108,13 +108,23 @@ for (i = 0; i < finances.length; i++) {
 for (i = 1; i < finances.length; i++) {
   monthChange.push(profitlossArray[i] - profitlossArray[i - 1]);
 }
+// This way doesn't work
+// for (i = 1; i < finances.length; i++) {
+//   finances[change].push(profitlossArray[i] - profitlossArray[i - 1]);
+// }
+
+let totalChangeInProfits = profitlossTotal / totalMonths;
+
+let minChange = Math.min(...monthChange);
+let maxChange = Math.max(...monthChange);
 
 console.log(totalMonths);
 console.log(profitlossTotal);
+console.log(totalChangeInProfits);
 console.log(profitlossArray);
 console.log(monthChange);
-console.log(typeof profitlossTotal);
-console.log(typeof profitloss);
+console.log(minChange);
+console.log(maxChange);
 
 // Calculate net profit and loss.  Need to deconstruct array.  Loop over profitloss part of array and add numbers together.  Total showing as NaN.  Need to research whether the negative numbers are affecting the calculation and maybe reformat the profitloss variable.
 
@@ -141,4 +151,3 @@ console.log(typeof profitloss);
 // ```Set up a table in HTML
 
 // Your final code should print the analysis to the console.
-// Use console.log to do this.
