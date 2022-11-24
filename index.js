@@ -92,6 +92,7 @@ let totalMonths = finances.length;
 let month, profitloss;
 let profitlossTotal = 0;
 let profitlossArray = [];
+let monthChange = [];
 
 for (i = 0; i < finances.length; i++) {
   [month, profitloss] = finances[i];
@@ -103,9 +104,15 @@ for (i = 0; i < finances.length; i++) {
   //   console.log(typeof profitloss);
 }
 
+// Thinking about calculating month on month change
+for (i = 1; i < finances.length; i++) {
+  monthChange[i] = finances[i[profitloss]] - finances[i[profitloss] - 1];
+}
+
 console.log(totalMonths);
 console.log(profitlossTotal);
 console.log(profitlossArray);
+console.log(monthChange);
 console.log(typeof profitlossTotal);
 console.log(typeof profitloss);
 
