@@ -94,9 +94,9 @@ let profitlossTotal = 0;
 
 for (i = 0; i < finances.length; i++) {
   [month, profitloss] = finances[i];
-  profitlossTotal += profitloss[i];
+  profitlossTotal += profitloss;
   // console.log(profitlossTotal);
-  // console.log(month, profitloss);
+  console.log(month, profitloss);
   //   console.log(typeof profitloss);
 }
 
