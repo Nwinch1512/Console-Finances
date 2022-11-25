@@ -87,15 +87,47 @@ var finances = [
   ["Feb-2017", 671099],
 ];
 
+console.log(finances[3]); //["Apr-2010", -69417]
+console.log(finances[3][0]); //"Apr-2010"
+console.log(finances[3][1]); //-69417
+console.log(finances[7][0]); //"Aug-2010"
+
 let totalMonths = finances.length;
 
 let month, profitloss;
 let profitlossTotal = 0;
 let profitlossArray = [];
-let monthChange = [];
+let monthChange;
+let profitlossChange = [];
 
+// Second attempt
+// function financeCalcs([finances]) {
+//   let min = finances[i][1];
+//   let max = finances[i][1];
+//   const finance = finances[i];
+// }
+
+// Calculating total profit/loss
 for (i = 0; i < finances.length; i++) {
-  ([month, profitloss] = finances[i]), 0;
+  [month, profitloss] = finances[i];
+  profitlossTotal += profitloss;
+  profitlossChange = profitloss[i];
+}
+
+//Calculating month on month change and adding to finances array
+for (i = 0; i < finances.length; i++) {
+  let prevprofitloss = finances[i][1];
+  let nextmonthprofitloss = finances[i + 1][1];
+  monthChange = nextmonthprofitloss - prevprofitloss;
+  finances[i + 1].push(monthChange);
+  console.log(finances[i]);
+}
+console.log(profitlossTotal);
+console.log(month, profitlossChange);
+
+// Initial attempt
+for (i = 0; i < finances.length; i++) {
+  [month, profitloss] = finances[i];
   profitlossTotal += profitloss;
   profitlossArray.push(profitloss);
 
