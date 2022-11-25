@@ -100,8 +100,10 @@ let prevprofitloss;
 let currentprofitloss;
 let nextmonthprofitloss;
 let min = 0;
+let minRow = finances[0];
 let minMonth = "";
 let max = 0;
+let maxRow = finances[0];
 let maxMonth = "";
 let totalChange = 0;
 
@@ -131,9 +133,15 @@ for (i = 1; i < finances.length; i++) {
     min = curChange;
     minMonth = finances[i][0];
   }
+  if (curChange > maxRow[1]) {
+    maxRow = finances[i];
+  }
+  if (curChange < minRow[1]) {
+    minRow = finances[i];
+  }
 }
 
-let averageChange = totalChange / (totalMonths - 1);
+let averageChange = (totalChange / (totalMonths - 1)).toFixed(2);
 console.log(totalChange);
 console.log(
   "The average monthly change in profits/losses was $" + averageChange + "."
@@ -150,24 +158,28 @@ console.log(
     " during the month of " +
     minMonth
 );
-// Initial attempt
-for (i = 0; i < finances.length; i++) {
-  [month, profitloss] = finances[i];
-  profitlossTotal += profitloss;
-  profitlossArray.push(profitloss);
-
-  // console.log(profitlossTotal);
-  console.log(month, profitloss);
-  //   console.log(typeof profitloss);
-}
+console.log(
+  "The incorrect greatest increase in profit made was $" +
+    maxRow[1] +
+    " during the month of " +
+    maxRow[0]
+);
+console.log(
+  "The incorrect decrease in profit made was $" +
+    minRow[1] +
+    " during the month of " +
+    minRow[0]
+);
 
 let totalChangeInProfits = profitlossTotal / totalMonths;
 
-console.log(totalMonths);
-console.log(profitlossTotal);
-console.log(totalChangeInProfits);
-console.log(profitlossArray);
-console.log(monthChange);
+console.log(`Financial Analysis
+----------------------------
+Total Months: ${totalMonths}
+Total: $${profitlossTotal}
+Average  Change: $${averageChange}
+Greatest Increase in Profits: ${maxMonth} ($${max})
+Greatest Decrease in Profits: ${minMonth} ($${min})`);
 
 // Calculate net profit and loss.  Need to deconstruct array.  Loop over profitloss part of array and add numbers together.  Total showing as NaN.  Need to research whether the negative numbers are affecting the calculation and maybe reformat the profitloss variable.
 
