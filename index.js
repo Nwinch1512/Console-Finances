@@ -87,44 +87,69 @@ var finances = [
   ["Feb-2017", 671099],
 ];
 
-console.log(finances[3]); //["Apr-2010", -69417]
-console.log(finances[3][0]); //"Apr-2010"
-console.log(finances[3][1]); //-69417
-console.log(finances[7][0]); //"Aug-2010"
-
+// Calculating total months
 let totalMonths = finances.length;
+console.log("There are " + totalMonths + " months in total.");
 
 let month, profitloss;
 let profitlossTotal = 0;
 let profitlossArray = [];
 let monthChange;
 let profitlossChange = [];
-
-// Second attempt
-// function financeCalcs([finances]) {
-//   let min = finances[i][1];
-//   let max = finances[i][1];
-//   const finance = finances[i];
-// }
+let prevprofitloss;
+let currentprofitloss;
+let nextmonthprofitloss;
+let min = 0;
+let minMonth = "";
+let max = 0;
+let maxMonth = "";
+let totalChange = 0;
 
 // Calculating total profit/loss
 for (i = 0; i < finances.length; i++) {
   [month, profitloss] = finances[i];
   profitlossTotal += profitloss;
-  profitlossChange = profitloss[i];
 }
 
-//Calculating month on month change and adding to finances array
-for (i = 0; i < finances.length; i++) {
-  let prevprofitloss = finances[i][1];
-  let nextmonthprofitloss = finances[i + 1][1];
-  monthChange = nextmonthprofitloss - prevprofitloss;
-  finances[i + 1].push(monthChange);
-  console.log(finances[i]);
-}
-console.log(profitlossTotal);
-console.log(month, profitlossChange);
+console.log(
+  "The net total amount of profit/losses over this period was $" +
+    profitlossTotal +
+    "."
+);
 
+// Calculating min and max month change
+for (i = 1; i < finances.length; i++) {
+  prevprofitloss = finances[i - 1][1];
+  currentprofitloss = finances[i][1];
+  let curChange = currentprofitloss - prevprofitloss;
+  totalChange += curChange;
+  if (curChange > max) {
+    max = curChange;
+    maxMonth = finances[i][0];
+  }
+  if (curChange < min) {
+    min = curChange;
+    minMonth = finances[i][0];
+  }
+}
+
+let averageChange = totalChange / (totalMonths - 1);
+console.log(totalChange);
+console.log(
+  "The average monthly change in profits/losses was $" + averageChange + "."
+);
+console.log(
+  "The greatest increase in profit made was $" +
+    max +
+    " during the month of " +
+    maxMonth
+);
+console.log(
+  "The greatest decrease in profit made was $" +
+    min +
+    " during the month of " +
+    minMonth
+);
 // Initial attempt
 for (i = 0; i < finances.length; i++) {
   [month, profitloss] = finances[i];
@@ -136,31 +161,15 @@ for (i = 0; i < finances.length; i++) {
   //   console.log(typeof profitloss);
 }
 
-// Thinking about calculating month on month change
-for (i = 1; i < finances.length; i++) {
-  monthChange.push(profitlossArray[i] - profitlossArray[i - 1]);
-}
-// This way doesn't work
-// for (i = 1; i < finances.length; i++) {
-//   finances[change].push(profitlossArray[i] - profitlossArray[i - 1]);
-// }
-
 let totalChangeInProfits = profitlossTotal / totalMonths;
-
-let minChange = Math.min(...monthChange);
-let maxChange = Math.max(...monthChange);
 
 console.log(totalMonths);
 console.log(profitlossTotal);
 console.log(totalChangeInProfits);
 console.log(profitlossArray);
 console.log(monthChange);
-console.log(minChange);
-console.log(maxChange);
 
 // Calculate net profit and loss.  Need to deconstruct array.  Loop over profitloss part of array and add numbers together.  Total showing as NaN.  Need to research whether the negative numbers are affecting the calculation and maybe reformat the profitloss variable.
-
-// let netProfitLoss = Maths.sum(finances);
 
 // The average of the **changes** in Profit/Losses over the entire period.
 // * You will need to track what the total change in profits are from month to month and then find the average.
