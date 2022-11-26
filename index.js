@@ -87,39 +87,26 @@ var finances = [
   ["Feb-2017", 671099],
 ];
 
-// Calculating total months
+// Calculating total months in array and declaring variables so they can be accessed and retrieved outside of the loop
 let totalMonths = finances.length;
-console.log("There are " + totalMonths + " months in total.");
-
 let month, profitloss;
 let profitlossTotal = 0;
-let profitlossArray = [];
 let monthChange;
-let profitlossChange = [];
 let prevprofitloss;
 let currentprofitloss;
-let nextmonthprofitloss;
 let min = 0;
-let minRow = finances[0];
 let minMonth = "";
 let max = 0;
-let maxRow = finances[0];
 let maxMonth = "";
 let totalChange = 0;
 
-// Calculating total profit/loss
+// Looping over and deconstructing array to calculate total profit/loss over 86 month period
 for (i = 0; i < finances.length; i++) {
   [month, profitloss] = finances[i];
   profitlossTotal += profitloss;
 }
 
-console.log(
-  "The net total amount of profit/losses over this period was $" +
-    profitlossTotal +
-    "."
-);
-
-// Calculating min and max month change
+// Calculating monthly change in profit and identifying which months displayed the greatest increase and decrease in profits
 for (i = 1; i < finances.length; i++) {
   prevprofitloss = finances[i - 1][1];
   currentprofitloss = finances[i][1];
@@ -133,46 +120,15 @@ for (i = 1; i < finances.length; i++) {
     min = curChange;
     minMonth = finances[i][0];
   }
-  if (curChange > maxRow[1]) {
-    maxRow = finances[i];
-  }
-  if (curChange < minRow[1]) {
-    minRow = finances[i];
-  }
 }
 
+//Calculating overall average monthly change in profits across the 86 month period
 let averageChange = (totalChange / (totalMonths - 1)).toFixed(2);
-console.log(totalChange);
-console.log(
-  "The average monthly change in profits/losses was $" + averageChange + "."
-);
-console.log(
-  "The greatest increase in profit made was $" +
-    max +
-    " during the month of " +
-    maxMonth
-);
-console.log(
-  "The greatest decrease in profit made was $" +
-    min +
-    " during the month of " +
-    minMonth
-);
-console.log(
-  "The incorrect greatest increase in profit made was $" +
-    maxRow[1] +
-    " during the month of " +
-    maxRow[0]
-);
-console.log(
-  "The incorrect decrease in profit made was $" +
-    minRow[1] +
-    " during the month of " +
-    minRow[0]
-);
 
-let totalChangeInProfits = profitlossTotal / totalMonths;
+//Calculating average monthly profit over 86 month period
+let averageProfit = (profitlossTotal / totalMonths).toFixed(2);
 
+// Printing results to console using a template literal
 console.log(`Financial Analysis
 ----------------------------
 Total Months: ${totalMonths}
@@ -181,26 +137,15 @@ Average  Change: $${averageChange}
 Greatest Increase in Profits: ${maxMonth} ($${max})
 Greatest Decrease in Profits: ${minMonth} ($${min})`);
 
-// Calculate net profit and loss.  Need to deconstruct array.  Loop over profitloss part of array and add numbers together.  Total showing as NaN.  Need to research whether the negative numbers are affecting the calculation and maybe reformat the profitloss variable.
-
-// The average of the **changes** in Profit/Losses over the entire period.
-// * You will need to track what the total change in profits are from month to month and then find the average.
-// * (`Total/Number of months`)
-
-// * The greatest increase in profits (date and amount) over the entire period.
-
-// * The greatest decrease in losses (date and amount) over the entire period.
-
-// When you open your code in the browser your resulting analysis should look similar to the following:
-
-// ```text
-// Financial Analysis
-// ----------------------------
-// Total Months: 25
-// Total: $2561231
-// Average  Change: $-2315.12
-// Greatest Increase in Profits: Feb-2012 ($1926159)
-// Greatest Decrease in Profits: Sep-2013 ($-2196167)
-// ```Set up a table in HTML
-
-// Your final code should print the analysis to the console.
+// Setting up table in html to display results on the webpage
+// Setting up HTML elements as variables to create a table displaying the results
+let tableDataTotalChange = document.getElementById("total months");
+let tableDataTotal = document.getElementById("total");
+let tableDataAverage = document.getElementById("average");
+let tableDataGreatestIncrease = document.getElementById("max");
+let tableDataGreatestDecrease = document.getElementById("min");
+tableDataTotalChange.innerHTML = totalMonths;
+tableDataTotal.innerHTML = "$" + profitlossTotal;
+tableDataAverage.innerHTML = "$" + averageChange;
+tableDataGreatestIncrease.innerHTML = maxMonth + " ($" + max + ")";
+tableDataGreatestDecrease.innerHTML = minMonth + " ($" + min + ")";
