@@ -128,15 +128,6 @@ let averageChange = (totalChange / (totalMonths - 1)).toFixed(2);
 //Calculating average monthly profit over 86 month period
 let averageProfit = (profitlossTotal / totalMonths).toFixed(2);
 
-// Printing results to console using a template literal
-console.log(`Financial Analysis
-----------------------------
-Total Months: ${totalMonths}
-Total: $${profitlossTotal}
-Average  Change: $${averageChange}
-Greatest Increase in Profits: ${maxMonth} ($${max})
-Greatest Decrease in Profits: ${minMonth} ($${min})`);
-
 // Setting up table in html to display results on the webpage
 // Setting up HTML elements as variables to create a table displaying the results
 let tableDataTotalChange = document.getElementById("total months");
@@ -149,3 +140,12 @@ tableDataTotal.innerHTML = "$" + profitlossTotal;
 tableDataAverage.innerHTML = "$" + averageChange;
 tableDataGreatestIncrease.innerHTML = maxMonth + " ($" + max + ")";
 tableDataGreatestDecrease.innerHTML = minMonth + " ($" + min + ")";
+
+// Printing results to console using a template literal
+console.log(`Financial Analysis
+----------------------------
+Total Months: ${totalMonths}
+Total: $${profitlossTotal}
+Average  Change: $${averageChange}
+Greatest Increase in Profits: ${maxMonth} ($${max})
+Greatest Decrease in Profits: ${minMonth} ($${min})`);
