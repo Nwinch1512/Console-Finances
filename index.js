@@ -106,7 +106,7 @@ for (i = 0; i < finances.length; i++) {
   profitlossTotal += profitloss;
 }
 
-// Calculating monthly change in profit and identifying which months displayed the greatest increase and decrease in profits
+// Calculating monthly change in profit and identifying which months displayed the greatest increase and decrease in profits.  Started at index 1 because using i-1 to get previous month to perform month on change calculation.
 for (i = 1; i < finances.length; i++) {
   prevprofitloss = finances[i - 1][1];
   currentprofitloss = finances[i][1];
@@ -130,7 +130,7 @@ let averageProfit = (profitlossTotal / totalMonths).toFixed(2);
 
 // Setting up table in html to display results on the webpage
 // Setting up HTML elements as variables to create a table displaying the results
-let tableDataTotalChange = document.getElementById("total months");
+let tableDataTotalChange = document.getElementById("total-months");
 let tableDataTotal = document.getElementById("total");
 let tableDataAverage = document.getElementById("average");
 let tableDataGreatestIncrease = document.getElementById("max");
